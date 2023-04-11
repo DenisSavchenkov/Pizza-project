@@ -8,6 +8,8 @@ type propsTypes = {
   sizes: number[];
 };
 
+const typeNames = ['тонкое', 'традиционное'];
+
 const PizzaBlock: React.FC<propsTypes> = ({
   imageUrl,
   title,
@@ -22,10 +24,22 @@ const PizzaBlock: React.FC<propsTypes> = ({
         <h4 className={styles.title}>{title}</h4>
         <div className={styles.switchBlock}>
           <ul className={styles.types}>
-            <li className={styles.active}>{types}</li>
+            {types.map((type, index) => {
+              return (
+                <li key={index} className={styles.active}>
+                  {typeNames[type]}
+                </li>
+              );
+            })}
           </ul>
           <ul className={styles.sizes}>
-            <li className={styles.active}>{sizes} см.</li>
+            {sizes.map((size, index) => {
+              return (
+                <li key={index} className={styles.active}>
+                  {size} см.
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className={styles.bottom}>

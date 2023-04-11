@@ -9,7 +9,6 @@ import { RootState, useAppDispatch } from '../../redux/store';
 function Home() {
   const pizzaData = useSelector((state: RootState) => state.pizzas.pizzaData);
   const dispatch = useAppDispatch();
-  console.log(pizzaData);
 
   React.useEffect(() => {
     dispatch(fetchPizza());
