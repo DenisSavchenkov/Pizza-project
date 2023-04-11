@@ -1,8 +1,9 @@
 import Search from '../Search/Search';
 import styles from './Header.module.scss';
 import CartButton from '../CartButton/CarrtButton';
+import React from 'react';
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <div className={styles.header}>
       <a href="#" className={styles.logo}>
@@ -16,6 +17,6 @@ function Header() {
       <CartButton />
     </div>
   );
-}
+};
 
 export default Header;

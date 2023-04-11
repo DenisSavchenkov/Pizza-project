@@ -21,6 +21,12 @@
   line-height: 39px;
 }
 
+.content-bottom {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 1215px) {
   .content-top {
     flex-direction: column;

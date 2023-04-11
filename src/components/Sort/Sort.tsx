@@ -1,6 +1,6 @@
 import styles from './Sort.module.scss';
 
-function Sort() {
+const Sort: React.FC = () => {
   return (
     <div className={styles.sort}>
       <img src="src/images/arrow-up.svg" alt="arrow" />
@@ -13,6 +13,6 @@ function Sort() {
       </ul>
     </div>
   );
-}
+};
 
 export default Sort;

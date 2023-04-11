@@ -1,6 +1,7 @@
+import React from 'react';
 import styles from './Categories.module.scss';
 
-function Categories() {
+const Categories: React.FC = () => {
   const nameOfCategory = [
     'Все',
     'Мясные',
@@ -17,6 +18,6 @@ function Categories() {
       })}
     </ul>
   );
-}
+};
 
 export default Categories;

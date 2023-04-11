@@ -1,6 +1,7 @@
+import React from 'react';
 import styles from './Search.module.scss';
 
-function Search() {
+const Search: React.FC = () => {
   return (
     <div className={styles.search}>
       <input
@@ -16,6 +17,6 @@ function Search() {
       <img className={styles.cancel} src="src/images/cancel.svg" alt="cancel" />
     </div>
   );
-}
+};
 
 export default Search;

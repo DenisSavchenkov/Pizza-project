@@ -1,6 +1,7 @@
+import React from 'react';
 import styles from './CartButton.module.scss';
 
-function CartButton() {
+const CartButton: React.FC = () => {
   return (
     <>
       <button className={styles.button}>
@@ -15,6 +16,6 @@ function CartButton() {
       </button>
     </>
   );
-}
+};
 
 export default CartButton;
