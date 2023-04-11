@@ -1,0 +1,36 @@
+.list {
+  display: flex;
+
+  li + li {
+    margin-left: 9px;
+  }
+
+  li {
+    padding: 12px 30px;
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.3s;
+      background-color: #f0f0f0;
+    }
+
+    &.active {
+      background-color: #282828;
+      color: #ffffff;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  .list {
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.container {
+  max-width: 1340px;
+  background-color: #ffffff;
+  margin: 50px auto;
+  padding: 0 50px 100px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+}
+
+.content-top {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+}
+
+@media (max-width: 1215px) {
+  .content-top {
+    flex-direction: column;
+  }
+}
