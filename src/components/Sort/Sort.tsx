@@ -1,16 +1,49 @@
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../redux/store';
 import styles from './Sort.module.scss';
+import { setActiveSort } from '../../redux/slices/filterSlice';
+import React from 'react';
+
+const sortNames = ['популярности', 'цене', 'алфавиту'];
 
 const Sort: React.FC = () => {
+  const [isPopup, setIsPopup] = React.useState<boolean>(false);
+  const { activeSort } = useSelector((state: RootState) => state.filter);
+  const dispatch = useAppDispatch();
+  const sortRef = React.useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
+      setIsPopup(false);
+    }
+  };
+  window.document.addEventListener('click', handleClickOutside);
+
   return (
-    <div className={styles.sort}>
+    <div ref={sortRef} className={styles.sort}>
       <img src="src/images/arrow-up.svg" alt="arrow" />
       <span className={styles.sortBy}>Сортировка по:</span>
-      <span className={styles.sortName}>популярности</span>
-      <ul className={styles.popup}>
-        <li className={styles.active}>популярности</li>
-        <li>цене</li>
-        <li>алфавиту</li>
-      </ul>
+      <span onClick={() => setIsPopup(!isPopup)} className={styles.sortName}>
+        {sortNames[activeSort]}
+      </span>
+      {isPopup && (
+        <ul className={styles.popup}>
+          {sortNames.map((name, index) => {
+            return (
+              <li
+                key={index}
+                onClick={() => {
+                  dispatch(setActiveSort(index));
+                  setIsPopup(false);
+                }}
+                className={activeSort === index ? styles.active : ''}
+              >
+                {name}
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

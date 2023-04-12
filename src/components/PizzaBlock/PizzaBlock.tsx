@@ -1,4 +1,7 @@
 import styles from './PizzaBlock.module.scss';
+import React from 'react';
+
+const typeNames = ['тонкое', 'традиционное'];
 
 type propsTypes = {
   imageUrl: string;
@@ -8,8 +11,6 @@ type propsTypes = {
   sizes: number[];
 };
 
-const typeNames = ['тонкое', 'традиционное'];
-
 const PizzaBlock: React.FC<propsTypes> = ({
   imageUrl,
   title,
@@ -17,6 +18,9 @@ const PizzaBlock: React.FC<propsTypes> = ({
   types,
   sizes,
 }) => {
+  const [activeType, setActiveType] = React.useState<number>(0);
+  const [activeSize, setActiveSize] = React.useState<number>(0);
+
   return (
     <ul className={styles.list}>
       <li className={styles.item}>
@@ -26,7 +30,11 @@ const PizzaBlock: React.FC<propsTypes> = ({
           <ul className={styles.types}>
             {types.map((type, index) => {
               return (
-                <li key={index} className={styles.active}>
+                <li
+                  onClick={() => setActiveType(index)}
+                  className={activeType === index ? styles.active : ''}
+                  key={index}
+                >
                   {typeNames[type]}
                 </li>
               );
@@ -35,7 +43,11 @@ const PizzaBlock: React.FC<propsTypes> = ({
           <ul className={styles.sizes}>
             {sizes.map((size, index) => {
               return (
-                <li key={index} className={styles.active}>
+                <li
+                  onClick={() => setActiveSize(index)}
+                  className={activeSize === index ? styles.active : ''}
+                  key={index}
+                >
                   {size} см.
                 </li>
               );
