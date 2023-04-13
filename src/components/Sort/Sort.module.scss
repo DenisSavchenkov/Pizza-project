@@ -4,6 +4,11 @@
   align-items: center;
   position: relative;
   font-weight: 700;
+
+  img {
+    cursor: pointer;
+    width: 22px;
+  }
 }
 
 .sortBy {

@@ -5,14 +5,15 @@ type FetchArgs = {
   category: string;
   sortBy: boolean | string;
   search: string;
+  order: string;
 };
 
 export const fetchPizza = createAsyncThunk(
   'pizza/pizzaData',
   async (params: FetchArgs) => {
-    const { category, sortBy, search } = params;
+    const { category, sortBy, search, order } = params;
     const { data } = await axios.get<PizzaItems[]>(
-      `https://63fb4e4b7a045e192b66b718.mockapi.io/items?${category}${sortBy}${search}`
+      `https://63fb4e4b7a045e192b66b718.mockapi.io/items?${category}${sortBy}${order}${search}`
     );
     return data;
   }

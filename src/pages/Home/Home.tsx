@@ -8,37 +8,40 @@ import { RootState, useAppDispatch } from '../../redux/store';
 
 function Home() {
   const pizzaData = useSelector((state: RootState) => state.pizzas.pizzaData);
-  const { activeCategory, activeSort, searchContent } = useSelector(
+  const { activeCategory, activeSort, searchContent, orderDesc } = useSelector(
     (state: RootState) => state.filter
   );
   const dispatch = useAppDispatch();
 
   const category = activeCategory > 0 ? `category=${activeCategory}` : '';
   const search = searchContent ? `&search=${searchContent}` : '';
+  const order = orderDesc ? '&order=desc' : `&order=asc`;
   const sortBy =
     activeSort === 0
-      ? '&sortBy=raiting&order=desc'
+      ? '&sortBy=rating'
       : activeSort === 1
-      ? '&sortBy=price&order=desc'
+      ? '&sortBy=price'
       : ''
       ? activeSort === 2
-      : '&sortBy=title&order=desc';
+      : '&sortBy=title';
 
   type itemsTypes = {
     category: string;
     sortBy: string | boolean;
     search: string;
+    order: string;
   };
 
   const items: itemsTypes = {
     category,
     sortBy,
     search,
+    order,
   };
 
   React.useEffect(() => {
     dispatch(fetchPizza(items));
-  }, [category, sortBy, searchContent]);
+  }, [category, sortBy, searchContent, order]);
 
   return (
     <>
