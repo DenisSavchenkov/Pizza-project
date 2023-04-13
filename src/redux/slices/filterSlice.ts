@@ -3,11 +3,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 type FilterState = {
   activeCategory: number;
   activeSort: number;
+  searchContent: string;
 };
 
 const initialState: FilterState = {
   activeCategory: 0,
   activeSort: 0,
+  searchContent: '',
 };
 
 const filterSlice = createSlice({
@@ -20,9 +22,13 @@ const filterSlice = createSlice({
     setActiveSort(state, action: PayloadAction<number>) {
       state.activeSort = action.payload;
     },
+    setSearchContent(state, action: PayloadAction<string>) {
+      state.searchContent = action.payload;
+    },
   },
 });
 
-export const { setActiveCategory, setActiveSort } = filterSlice.actions;
+export const { setActiveCategory, setActiveSort, setSearchContent } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './CartButton.module.scss';
+import { Link } from 'react-router-dom';
 
 const CartButton: React.FC = () => {
   return (
     <>
-      <button className={styles.button}>
+      <Link to="/cart" className={styles.button}>
         <span className={styles.sum}>0 ₽</span>
         <div className={styles.line}></div>
         <img
@@ -13,7 +14,7 @@ const CartButton: React.FC = () => {
           alt="basket"
         />
         <span className={styles.amount}>0</span>
-      </button>
+      </Link>
     </>
   );
 };

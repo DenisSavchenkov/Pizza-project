@@ -1,12 +1,22 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const fetchPizza = createAsyncThunk('pizza/pizzaData', async () => {
-  const { data } = await axios.get<PizzaItems[]>(
-    'https://63fb4e4b7a045e192b66b718.mockapi.io/items'
-  );
-  return data;
-});
+type FetchArgs = {
+  category: string;
+  sortBy: boolean | string;
+  search: string;
+};
+
+export const fetchPizza = createAsyncThunk(
+  'pizza/pizzaData',
+  async (params: FetchArgs) => {
+    const { category, sortBy, search } = params;
+    const { data } = await axios.get<PizzaItems[]>(
+      `https://63fb4e4b7a045e192b66b718.mockapi.io/items?${category}${sortBy}${search}`
+    );
+    return data;
+  }
+);
 
 type PizzaItems = {
   id: string;
@@ -45,10 +55,10 @@ const pizzaDataSlice = createSlice({
     });
     builder.addCase(fetchPizza.fulfilled, (state, action) => {
       state.pizzaData = action.payload;
-      state.status = state.status = Status.SUCCESS;
+      state.status = Status.SUCCESS;
     });
     builder.addCase(fetchPizza.rejected, (state) => {
-      state.status = state.status = Status.ERROR;
+      state.status = Status.ERROR;
     });
   },
 });

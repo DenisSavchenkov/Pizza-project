@@ -1,4 +1,4 @@
-import styles from './EmptyCart.module.scss';
+import styles from './CartEmpty.module.scss';
 
 function CartEmpty() {
   return (

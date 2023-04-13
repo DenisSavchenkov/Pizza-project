@@ -6,13 +6,20 @@
   width: 150px;
   height: 50px;
   background-color: #fe5f1e;
-  color: #ffffff;
   border-radius: 30px;
 
   &:hover {
     background-color: #df5a25;
     transition: all 0.2s;
   }
+}
+
+.sum {
+  color: #ffffff;
+}
+
+.amount {
+  color: #ffffff;
 }
 
 .line {
