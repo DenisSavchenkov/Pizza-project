@@ -12,12 +12,12 @@ const Sort: React.FC = () => {
   const dispatch = useAppDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
+  // Close popap when click outside block!
+  window.document.addEventListener('click', (event: MouseEvent) => {
     if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
       setIsPopup(false);
     }
-  };
-  window.document.addEventListener('click', handleClickOutside);
+  });
 
   return (
     <div ref={sortRef} className={styles.sort}>
