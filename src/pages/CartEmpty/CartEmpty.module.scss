@@ -21,13 +21,16 @@
 }
 
 .back {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 74px;
   width: 210px;
   height: 46px;
   background: #282828;
   border-radius: 30px;
-  color: #ffffff;
   font-weight: 700;
+  color: #ffffff;
 
   &:hover {
     transition: all 0.3s;

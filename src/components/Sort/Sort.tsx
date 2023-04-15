@@ -23,10 +23,11 @@ const Sort: React.FC = () => {
   return (
     <div ref={sortRef} className={styles.sort}>
       <img
+        className={orderDesc ? '' : styles.activeArrow}
         onClick={() => {
           dispatch(setOrderDesc(!orderDesc));
         }}
-        src={orderDesc ? 'src/images/arrowUP.svg' : 'src/images/arrowDOWN.svg'}
+        src="src/images/arrowUP.svg"
         alt="arrow"
       />
       <span className={styles.sortBy}>Сортировка по:</span>

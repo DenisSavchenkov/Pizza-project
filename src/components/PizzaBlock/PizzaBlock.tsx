@@ -1,9 +1,13 @@
+import { useSelector } from 'react-redux';
 import styles from './PizzaBlock.module.scss';
 import React from 'react';
+import { RootState, useAppDispatch } from '../../redux/store';
+import { addItem } from '../../redux/slices/cartSlice';
 
-const typeNames = ['тонкое', 'традиционное'];
+export const typeNames = ['тонкое', 'традиционное'];
 
 type propsTypes = {
+  id: string;
   imageUrl: string;
   title: string;
   price: number;
@@ -12,6 +16,7 @@ type propsTypes = {
 };
 
 const PizzaBlock: React.FC<propsTypes> = ({
+  id,
   imageUrl,
   title,
   price,
@@ -20,6 +25,20 @@ const PizzaBlock: React.FC<propsTypes> = ({
 }) => {
   const [activeType, setActiveType] = React.useState<number>(0);
   const [activeSize, setActiveSize] = React.useState<number>(0);
+  const currentItem = useSelector((state: RootState) =>
+    state.cart.totalItems.find((item) => item.id === id)
+  );
+  const dispatch = useAppDispatch();
+  const currentQuantity = currentItem ? currentItem.quantity : 0;
+
+  const item = {
+    imageUrl,
+    title,
+    price,
+    type: types[activeType],
+    size: sizes[activeSize],
+    id,
+  };
 
   return (
     <ul className={styles.list}>
@@ -56,7 +75,10 @@ const PizzaBlock: React.FC<propsTypes> = ({
         </div>
         <div className={styles.bottom}>
           <p className={styles.price}>от {price} ₽</p>
-          <button className={styles.button}>
+          <button
+            onClick={() => dispatch(addItem(item))}
+            className={styles.button}
+          >
             <svg
               width="12"
               height="12"
@@ -70,7 +92,7 @@ const PizzaBlock: React.FC<propsTypes> = ({
               />
             </svg>
             <span className={styles.buttonText}>Добавить</span>
-            <span className={styles.count}>0</span>
+            <span className={styles.count}>{currentQuantity}</span>
           </button>
         </div>
       </li>

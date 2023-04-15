@@ -62,6 +62,10 @@
   width: 155px;
   height: 40px;
 
+  &:active {
+    transform: translateY(2px);
+  }
+
   &:hover {
     transition: all 0.2s;
     background-color: #eb5a1e;

@@ -1,4 +1,5 @@
 import styles from './CartEmpty.module.scss';
+import { Link } from 'react-router-dom';
 
 function CartEmpty() {
   return (
@@ -15,7 +16,9 @@ function CartEmpty() {
           alt="cart-empty"
         />
       </div>
-      <button className={styles.back}>Вернуться назад</button>
+      <Link to="/" className={styles.back}>
+        Вернуться назад
+      </Link>
     </div>
   );
 }
