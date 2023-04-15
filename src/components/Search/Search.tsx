@@ -13,7 +13,7 @@ const Search: React.FC = () => {
 
   const clearSeatchContent = () => {
     dispatch(setSearchContent(''));
-    searchRef.current.focus();
+    searchRef.current?.focus();
   };
 
   return (

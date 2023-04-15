@@ -3,6 +3,7 @@ import styles from './PizzaBlock.module.scss';
 import React from 'react';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { addItem } from '../../redux/slices/cartSlice';
+import { CartSliceType } from '../../redux/slices/cartSlice';
 
 export const typeNames = ['тонкое', 'традиционное'];
 
@@ -31,13 +32,14 @@ const PizzaBlock: React.FC<propsTypes> = ({
   const dispatch = useAppDispatch();
   const currentQuantity = currentItem ? currentItem.quantity : 0;
 
-  const item = {
+  const item: CartSliceType = {
     imageUrl,
     title,
     price,
     type: types[activeType],
     size: sizes[activeSize],
     id,
+    quantity: 1,
   };
 
   return (

@@ -1,6 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+export type CartSliceType = {
+  imageUrl: string;
+  title: string;
+  price: number;
+  type: number;
+  size: number;
+  id: string;
+  quantity: number;
+};
+
+interface StateType {
+  totalPrice: number;
+  totalItems: CartSliceType[];
+}
+
+const initialState: StateType = {
   totalPrice: 0,
   totalItems: [],
 };
@@ -9,7 +24,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem(state, action) {
+    addItem(state, action: PayloadAction<CartSliceType>) {
       const currentItem = state.totalItems.find(
         (item) => item.id === action.payload.id
       );
@@ -27,12 +42,12 @@ const cartSlice = createSlice({
       );
     },
 
-    plusQuantity(state, action) {
+    plusQuantity(state, action: PayloadAction<string>) {
       const currentItem = state.totalItems.find(
         (item) => item.id === action.payload
       );
 
-      currentItem.quantity++;
+      currentItem ? currentItem.quantity++ : null;
 
       state.totalPrice = state.totalItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -40,19 +55,19 @@ const cartSlice = createSlice({
       );
     },
 
-    minusQuantity(state, action) {
+    minusQuantity(state, action: PayloadAction<string>) {
       const currentItem = state.totalItems.find(
         (item) => item.id === action.payload
       );
 
-      currentItem.quantity--;
+      currentItem ? currentItem.quantity-- : null;
 
       state.totalPrice = state.totalItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
       );
 
-      currentItem.quantity === 0
+      currentItem?.quantity === 0
         ? (state.totalItems = state.totalItems.filter(
             (item) => item.id !== action.payload
           ))
@@ -66,7 +81,7 @@ const cartSlice = createSlice({
       }
     },
 
-    removeItem(state, action) {
+    removeItem(state, action: PayloadAction<string>) {
       state.totalItems = state.totalItems.filter(
         (item) => item.id !== action.payload
       );

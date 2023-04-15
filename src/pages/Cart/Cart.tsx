@@ -1,18 +1,22 @@
 import React from 'react';
 import styles from './Cart.module.scss';
 import CartItem from '../../components/CartItem/CartItem';
+import CartEmpty from '../CartEmpty/CartEmpty';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { clearCart } from '../../redux/slices/cartSlice';
-import CartEmpty from '../CartEmpty/CartEmpty';
+import { CartSliceType } from '../../redux/slices/cartSlice';
 
 const Cart: React.FC = () => {
   const { totalItems, totalPrice } = useSelector(
     (state: RootState) => state.cart
   );
   const dispatch = useAppDispatch();
-  const totalCount = totalItems.reduce((sum, item) => item.quantity + sum, 0);
+  const totalCount = totalItems.reduce(
+    (sum: number, item: CartSliceType) => item.quantity + sum,
+    0
+  );
 
   if (!totalPrice) {
     return <CartEmpty />;

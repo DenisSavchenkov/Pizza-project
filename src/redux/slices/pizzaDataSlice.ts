@@ -19,7 +19,7 @@ export const fetchPizza = createAsyncThunk(
   }
 );
 
-type PizzaItems = {
+export type PizzaItems = {
   id: string;
   imageUrl: string;
   title: string;
@@ -27,6 +27,9 @@ type PizzaItems = {
   types: number[];
   sizes: number[];
   rating: number;
+  quantity: number;
+  type: number;
+  size: number;
 };
 
 interface PizzaStateTypes {
