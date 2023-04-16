@@ -1,8 +1,8 @@
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
+import Cart from './pages/Cart/Cart';
 import { Route, Routes } from 'react-router-dom';
 import './scss/global.scss';
-import Cart from './pages/Cart/Cart';
 
 function App() {
   return (

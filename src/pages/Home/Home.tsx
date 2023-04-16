@@ -1,10 +1,10 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { fetchPizza } from '../../redux/slices/pizzaDataSlice';
 import { RootState, useAppDispatch } from '../../redux/store';
 import Categories from '../../components/Categories/Categories';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import Sort from '../../components/Sort/Sort';
-import React from 'react';
 
 function Home() {
   const pizzaData = useSelector((state: RootState) => state.pizzas.pizzaData);

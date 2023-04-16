@@ -29,12 +29,14 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      currentItem
-        ? currentItem.quantity++
-        : state.totalItems.push({
-            ...action.payload,
-            quantity: 1,
-          });
+      if (currentItem) {
+        currentItem.quantity++;
+      } else {
+        state.totalItems.push({
+          ...action.payload,
+          quantity: 1,
+        });
+      }
 
       state.totalPrice = state.totalItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -47,7 +49,9 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload
       );
 
-      currentItem ? currentItem.quantity++ : null;
+      if (currentItem) {
+        currentItem.quantity++;
+      }
 
       state.totalPrice = state.totalItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -60,18 +64,20 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload
       );
 
-      currentItem ? currentItem.quantity-- : null;
+      if (currentItem) {
+        currentItem.quantity--;
+      }
 
       state.totalPrice = state.totalItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
       );
 
-      currentItem?.quantity === 0
-        ? (state.totalItems = state.totalItems.filter(
-            (item) => item.id !== action.payload
-          ))
-        : null;
+      if (currentItem?.quantity === 0) {
+        state.totalItems = state.totalItems.filter(
+          (item) => item.id !== action.payload
+        );
+      }
     },
 
     clearCart(state) {

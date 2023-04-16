@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
-import styles from './PizzaBlock.module.scss';
 import React from 'react';
+import styles from './PizzaBlock.module.scss';
+import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../redux/store';
 import { addItem } from '../../redux/slices/cartSlice';
 import { CartSliceType } from '../../redux/slices/cartSlice';
