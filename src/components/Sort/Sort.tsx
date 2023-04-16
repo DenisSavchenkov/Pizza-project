@@ -13,6 +13,7 @@ const Sort: React.FC = () => {
   );
   const dispatch = useAppDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
+
   // Close popap when click outside block!
   window.document.addEventListener('click', (event: MouseEvent) => {
     if (sortRef.current && !sortRef.current.contains(event.target as Node)) {

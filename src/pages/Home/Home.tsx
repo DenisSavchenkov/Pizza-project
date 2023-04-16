@@ -5,9 +5,10 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import Categories from '../../components/Categories/Categories';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 import Sort from '../../components/Sort/Sort';
+import Skeleton from '../../components/utils/Skeleton';
 
 function Home() {
-  const pizzaData = useSelector((state: RootState) => state.pizzas.pizzaData);
+  const { pizzaData, status } = useSelector((state: RootState) => state.pizzas);
   const { activeCategory, activeSort, searchContent, orderDesc } = useSelector(
     (state: RootState) => state.filter
   );
@@ -51,9 +52,9 @@ function Home() {
       </div>
       <h2 className="title">Все пиццы</h2>
       <div className="content-bottom">
-        {pizzaData.map((pizza) => (
-          <PizzaBlock key={pizza.id} {...pizza} />
-        ))}
+        {status === 'loading'
+          ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
+          : pizzaData.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)}
       </div>
     </>
   );

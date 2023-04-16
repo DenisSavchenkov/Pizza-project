@@ -27,8 +27,20 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 1200px) {
+  .content-bottom {
+    justify-content: space-around;
+  }
+}
+
 @media (max-width: 1215px) {
   .content-top {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 750px) {
+  .container {
+    padding: 0 10px 100px;
   }
 }

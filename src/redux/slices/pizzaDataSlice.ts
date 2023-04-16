@@ -24,28 +24,19 @@ export type PizzaItems = {
   imageUrl: string;
   title: string;
   price: number;
-  types: number[];
-  sizes: number[];
   rating: number;
   quantity: number;
-  type: number;
-  size: number;
+  info: string;
 };
 
 interface PizzaStateTypes {
   pizzaData: PizzaItems[];
-  status: Status;
+  status: 'loading' | 'success' | 'error';
 }
 
-enum Status {
-  LOADNIG = 'loadnig',
-  SUCCESS = 'success',
-  ERROR = 'error',
-}
-
-const initialState: PizzaStateTypes = {
+export const initialState: PizzaStateTypes = {
   pizzaData: [],
-  status: Status.LOADNIG,
+  status: 'loading',
 };
 
 const pizzaDataSlice = createSlice({
@@ -55,14 +46,14 @@ const pizzaDataSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchPizza.pending, (state) => {
-      state.status = Status.LOADNIG;
+      state.status = 'loading';
     });
     builder.addCase(fetchPizza.fulfilled, (state, action) => {
       state.pizzaData = action.payload;
-      state.status = Status.SUCCESS;
+      state.status = 'success';
     });
     builder.addCase(fetchPizza.rejected, (state) => {
-      state.status = Status.ERROR;
+      state.status = 'error';
     });
   },
 });

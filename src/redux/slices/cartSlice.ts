@@ -4,8 +4,6 @@ export type CartSliceType = {
   imageUrl: string;
   title: string;
   price: number;
-  type: number;
-  size: number;
   id: string;
   quantity: number;
 };

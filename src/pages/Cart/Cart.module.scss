@@ -95,6 +95,7 @@
   height: 55px;
   border: 1px solid #d3d3d3;
   border-radius: 30px;
+  color: #b6b6b6;
 
   &:hover {
     transition: all 0.2s;
@@ -124,5 +125,50 @@
   &:hover {
     transition: all 0.2s;
     background-color: #df5a25;
+  }
+}
+
+@media (max-width: 755px) {
+  .basketText {
+    font-size: 20px;
+  }
+
+  .basket {
+    img {
+      padding-top: 8px;
+      width: 20px;
+    }
+  }
+
+  .back {
+    width: 130px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 14px;
+  }
+
+  .pay {
+    width: 130px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .amount {
+    font-size: 18px;
+  }
+
+  .orderSum {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+  .cartBottom {
+    display: block;
+    text-align: center;
+  }
+
+  .amount {
+    margin-bottom: 15px;
   }
 }

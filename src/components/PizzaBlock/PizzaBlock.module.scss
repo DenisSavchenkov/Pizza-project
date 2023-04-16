@@ -1,10 +1,6 @@
 .item {
   max-width: 280px;
-  text-align: center;
   margin: 35px 15px 0;
-  img {
-    margin-left: 10px;
-  }
 }
 
 .title {
@@ -14,34 +10,12 @@
   margin: 11px 0 22px 0;
 }
 
-.switchBlock {
-  background: #f3f3f3;
-  border-radius: 10px;
-  margin-bottom: 17px;
-
-  ul {
-    display: flex;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    padding: 4px 5px;
-
-    li {
-      width: 100%;
-      padding: 7px 10px;
-      cursor: pointer;
-
-      &.active {
-        background: #ffffff;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-        border-radius: 5px;
-      }
-    }
-
-    li + li {
-      margin-left: 5px;
-    }
-  }
+.info {
+  font-size: 14px;
+  font-weight: 500;
+  color: #7b7b7b;
+  min-height: 90px;
+  margin-bottom: 10px;
 }
 
 .bottom {
@@ -61,10 +35,6 @@
   border-radius: 30px;
   width: 155px;
   height: 40px;
-
-  &:active {
-    transform: translateY(2px);
-  }
 
   &:hover {
     transition: all 0.2s;

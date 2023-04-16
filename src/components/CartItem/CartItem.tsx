@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './CartItem.module.scss';
 import { useAppDispatch } from '../../redux/store';
-import { typeNames } from '../PizzaBlock/PizzaBlock';
 import {
   minusQuantity,
   plusQuantity,
@@ -12,8 +11,6 @@ type CartItemType = {
   imageUrl: string;
   title: string;
   price: number;
-  type: number;
-  size: number;
   id: string;
   quantity: number;
 };
@@ -22,8 +19,6 @@ const CartItem: React.FC<CartItemType> = ({
   imageUrl,
   title,
   price,
-  type,
-  size,
   quantity,
   id,
 }) => {
@@ -35,9 +30,7 @@ const CartItem: React.FC<CartItemType> = ({
         <img src={imageUrl} alt="pizza" />
         <div>
           <h5 className={styles.title}>{title}</h5>
-          <p className={styles.text}>
-            {typeNames[type]}, {size} см.
-          </p>
+          <p className={styles.text}>традиционное тесто, 30 см.</p>
         </div>
       </div>
       <div className={styles.counter}>
@@ -61,7 +54,7 @@ const CartItem: React.FC<CartItemType> = ({
         </button>
       </div>
       <p className={styles.sum}>{price * quantity} ₽</p>
-      <button>
+      <button className={styles.cancelButton}>
         <svg
           onClick={() => dispatch(removeItem(id))}
           className={styles.cancel}

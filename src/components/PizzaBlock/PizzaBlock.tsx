@@ -5,15 +5,12 @@ import { RootState, useAppDispatch } from '../../redux/store';
 import { addItem } from '../../redux/slices/cartSlice';
 import { CartSliceType } from '../../redux/slices/cartSlice';
 
-export const typeNames = ['тонкое', 'традиционное'];
-
 type propsTypes = {
   id: string;
   imageUrl: string;
   title: string;
   price: number;
-  types: number[];
-  sizes: number[];
+  info: string;
 };
 
 const PizzaBlock: React.FC<propsTypes> = ({
@@ -21,11 +18,8 @@ const PizzaBlock: React.FC<propsTypes> = ({
   imageUrl,
   title,
   price,
-  types,
-  sizes,
+  info,
 }) => {
-  const [activeType, setActiveType] = React.useState<number>(0);
-  const [activeSize, setActiveSize] = React.useState<number>(0);
   const currentItem = useSelector((state: RootState) =>
     state.cart.totalItems.find((item) => item.id === id)
   );
@@ -36,8 +30,6 @@ const PizzaBlock: React.FC<propsTypes> = ({
     imageUrl,
     title,
     price,
-    type: types[activeType],
-    size: sizes[activeSize],
     id,
     quantity: 1,
   };
@@ -47,36 +39,9 @@ const PizzaBlock: React.FC<propsTypes> = ({
       <li className={styles.item}>
         <img src={imageUrl} alt="pizza" />
         <h4 className={styles.title}>{title}</h4>
-        <div className={styles.switchBlock}>
-          <ul className={styles.types}>
-            {types.map((type, index) => {
-              return (
-                <li
-                  onClick={() => setActiveType(index)}
-                  className={activeType === index ? styles.active : ''}
-                  key={index}
-                >
-                  {typeNames[type]}
-                </li>
-              );
-            })}
-          </ul>
-          <ul className={styles.sizes}>
-            {sizes.map((size, index) => {
-              return (
-                <li
-                  onClick={() => setActiveSize(index)}
-                  className={activeSize === index ? styles.active : ''}
-                  key={index}
-                >
-                  {size} см.
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <p className={styles.info}>{info}</p>
         <div className={styles.bottom}>
-          <p className={styles.price}>от {price} ₽</p>
+          <p className={styles.price}>{price} ₽</p>
           <button
             onClick={() => dispatch(addItem(item))}
             className={styles.button}
